@@ -95,12 +95,7 @@ class CalculationsController < ApplicationController
 
         @range = @maximum - @minimum
 
-        if @count%2 == 0
-            @median = (@sorted_numbers[@count/2] + @sorted_numbers[@count/2 - 1])/2
-
-        else
-            @median = @sorted_numbers[@count/2]
-        end
+        @median = (@sorted_numbers[@count/2] + @sorted_numbers[(@count-1)/2])/2
 
         # start with an accumulator set to 0
         @sum = 0
