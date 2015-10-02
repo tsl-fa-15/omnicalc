@@ -30,21 +30,12 @@ class CalculationsController < ApplicationController
     end
 
     def loan_payment
-        @apr = params[:annual_percentage_rate].to_f
-        @years = params[:number_of_years].to_i
-        @principal = params[:principal_value].to_f
-
+        @loan_calculator = LoanCalculator.new(params[:annual_percentage_rate], params[:number_of_years], params[:principal_value])
         # =====================================================
         # Your code goes below.
         # You can use this formula for reference:
         # http://www.financeformulas.net/Loan_Payment_Formula.html
         # =====================================================
-
-        present_value = @principal
-        rate_per_period = @apr / 100 / 12
-        number_periods = @years * 12
-
-        @monthly_payment = (rate_per_period*present_value)/(1-(1+rate_per_period)**(-number_periods))
     end
 
     def time_between_form
