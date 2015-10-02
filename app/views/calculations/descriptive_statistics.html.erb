@@ -5,37 +5,37 @@
   <div class="panel-body">
     <dl class="dl-horizontal">
       <dt>Numbers</dt>
-      <dd><%= @numbers %></dd>
+      <dd><%= @stat.get_numbers %></dd>
 
       <dt>Sorted Numbers</dt>
-      <dd><%= @sorted_numbers %></dd>
+      <dd><%= @stat.sorted_numbers %></dd>
 
       <dt>Count</dt>
-      <dd><%= @count %></dd>
+      <dd><%= @stat.length %></dd>
 
       <dt>Minimum</dt>
-      <dd><%= @minimum %></dd>
+      <dd><%= @stat.min %></dd>
 
       <dt>Maximum</dt>
-      <dd><%= @maximum %></dd>
+      <dd><%= @stat.max %></dd>
 
       <dt>Range</dt>
-      <dd><%= @range %></dd>
+      <dd><%= @stat.range %></dd>
 
       <dt>Median</dt>
-      <dd><%= @median %></dd>
+      <dd><%= @stat.median %></dd>
 
       <dt>Sum</dt>
-      <dd><%= @sum %></dd>
+      <dd><%= @stat.sum %></dd>
 
       <dt>Mean</dt>
-      <dd><%= @mean %></dd>
+      <dd><%= @stat.mean %></dd>
 
       <dt>Variance</dt>
-      <dd><%= @variance %></dd>
+      <dd><%= @stat.variance %></dd>
 
       <dt>Standard Deviation</dt>
-      <dd><%= @standard_deviation %></dd>
+      <dd><%= @stat.standard_dev %></dd>
     </dl>
   </div>
 </div>

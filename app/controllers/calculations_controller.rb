@@ -78,49 +78,11 @@ class CalculationsController < ApplicationController
     end
 
     def descriptive_statistics
-        @numbers = params[:list_of_numbers].gsub(',', '').split.map(&:to_f)
-
+        @stat = Stat.new(params[:list_of_numbers])
         # =====================================================
         # Your code goes below.
         # The numbers the user input are in the array @numbers.
         # =====================================================
-
-        @sorted_numbers = @numbers.sort
-
-        @count = @numbers.count
-
-        @minimum = @numbers.min
-
-        @maximum = @numbers.max
-
-        @range = @maximum - @minimum
-
-        @median = (@sorted_numbers[@count/2] + @sorted_numbers[(@count-1)/2])/2
-
-        # start with an accumulator set to 0
-        @sum = 0
-        # go through each array item and add it to the accumulator
-        @numbers.each { |num| @sum = @sum + num }
-
-        # # alternate solution for sum using .inject
-        # @sum = @numbers.inject do |current_sum, num|
-        #     current_sum + num
-        # end
-
-        @mean = @sum/@count.to_f
-
-        squared_differences = []
-        @numbers.each do |num|
-            squared_differences << (num - @mean)**2
-        end
-        @variance = 0
-        squared_differences.each do |num|
-            @variance = @variance + num
-        end
-        @variance  = @variance/@count
-
-
-        @standard_deviation = Math.sqrt(@variance)
 
         render  'descriptive_statistics'
     end
