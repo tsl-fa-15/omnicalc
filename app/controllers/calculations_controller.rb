@@ -4,25 +4,13 @@ class CalculationsController < ApplicationController
     end
 
     def word_count
-        @text = params[:user_text]
-        @special_word = params[:user_word].downcase
+        @word_counter = WordCounter.new(params[:user_text], params[:user_word])
 
         # ========================================================
         # Your code goes below.
         # The text the user input is in the string @text.
         # The special word the user input is in the string @special_word.
         # ========================================================
-
-        @word_count = @text.split.count
-
-        @character_count_with_spaces = @text.length
-
-        @character_count_without_spaces = @text.gsub(" ", "").length
-
-        @occurrences = @text
-                        .downcase
-                        .split
-                        .count(@special_word)
     end
 
     def loan_payment_form
