@@ -44,7 +44,7 @@ class CalculationsController < ApplicationController
         rate_per_period = @apr / 100 / 12
         number_periods = @years * 12
 
-        @monthly_payment = "Replace this string with your answer"
+        @monthly_payment = (rate_per_period*present_value)/(1-(1+rate_per_period)**(-number_periods))
     end
 
     def time_between_form
@@ -85,25 +85,47 @@ class CalculationsController < ApplicationController
         # The numbers the user input are in the array @numbers.
         # =====================================================
 
-        @sorted_numbers = "Replace this string with your answer"
+        @sorted_numbers = @numbers.sort
 
-        @count = "Replace this string with your answer"
+        @count = @numbers.count
 
-        @minimum = "Replace this string with your answer"
+        @minimum = @numbers.min
 
-        @maximum = "Replace this string with your answer"
+        @maximum = @numbers.max
 
-        @range = "Replace this string with your answer"
+        @range = @maximum - @minimum
 
-        @median = "Replace this string with your answer"
+        if @count%2 == 0
+            @median = (@sorted_numbers[@count/2] + @sorted_numbers[@count/2 - 1])/2
 
-        @sum = "Replace this string with your answer"
+        else
+            @median = @sorted_numbers[@count/2]
+        end
 
-        @mean = "Replace this string with your answer"
+        # start with an accumulator set to 0
+        @sum = 0
+        # go through each array item and add it to the accumulator
+        @numbers.each { |num| @sum = @sum + num }
 
-        @variance = "Replace this string with your answer"
+        # # alternate solution for sum using .inject
+        # @sum = @numbers.inject do |current_sum, num|
+        #     current_sum + num
+        # end
 
-        @standard_deviation = "Replace this string with your answer"
+        @mean = @sum/@count.to_f
+
+        squared_differences = []
+        @numbers.each do |num|
+            squared_differences << (num - @mean)**2
+        end
+        @variance = 0
+        squared_differences.each do |num|
+            @variance = @variance + num
+        end
+        @variance  = @variance/@count
+
+
+        @standard_deviation = Math.sqrt(@variance)
 
         render  'descriptive_statistics'
     end
