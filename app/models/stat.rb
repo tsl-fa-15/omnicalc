@@ -1,6 +1,8 @@
 class Stat
   def initialize(space_separated_list_of_numbers)
-    @numbers = space_separated_list_of_numbers
+
+    @numbers = space_separated_list_of_numbers || ""
+    @numbers = @numbers
                 .gsub(',', '')
                 .split
                 .map(&:to_f)

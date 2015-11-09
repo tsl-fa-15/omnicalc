@@ -45,8 +45,11 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
 end
 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+  gem 'capybara'
+end
 
-gem 'rspec-rails', group: [:test, :development]
-gem 'capybara', group: [:test, :development]
+
 gem 'quiet_assets', group: [:test, :development]
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
